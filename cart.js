@@ -33,10 +33,9 @@ const cart = [
     }
 ]
 
-//CODE HERE
+const summedPrice = cart.reduce((acc, curr) => acc + curr.price, 0)
 
-// const summedPrice = cart.reduce(/* CALLBACK HERE */)
-
+console.log(summedPrice)
 
 //////////////////PROBLEM 2////////////////////
 /*  
@@ -53,9 +52,22 @@ const cart = [
     decimals, for example: .06 for a 6% tax.
 */
 
-//CODE HERE
+const calcFinalPrice = (cartTotal, couponValue, tax) => {
 
+    tax = cartTotal * tax
+    //console.log(tax)
+    cartTotal += tax
+    //console.log(cartTotal)
 
+    couponValue = couponValue * cartTotal
+   // console.log(couponValue)
+    cartTotal -= couponValue
+ //   console.log(cartTotal)
+
+    return parseFloat(cartTotal.toFixed(2))
+}
+
+console.log(calcFinalPrice(summedPrice, .03, .2))
 
 //////////////////PROBLEM 3////////////////////
 /*  
@@ -79,6 +91,16 @@ const cart = [
 
 /*
     TEXT ANSWER HERE
+    name: keep track of the customer
+    address: for delivery
+    phone number: to contact them
+    email: to contact them
+    payment: saved payment type for automatic payment
+        card type: Mastercard / Visa / etc
+        card number: needed to run the card
+    vehicle: for curbside pickup
+        color: for easy recognition
+        type: 4 door / sedan / motorbike / etc
 
 */
 
@@ -87,4 +109,19 @@ const cart = [
     guidelines.
 */
 
-//CODE HERE
+const BeccaCustomer = {
+    name: "Becca",
+    address: "1234 fake street, Arlington Texas",
+    phoneNumber: "000-000-0000",
+    email: "fakeAddress@gmail.com",
+    payment: {
+        cardType: "Visa",
+        cardNumber: "0000-0000-0000-0000"
+    },
+    vehicle: {
+        color: "white",
+        type: "sedan"
+    }
+}
+
+console.log(BeccaCustomer)
