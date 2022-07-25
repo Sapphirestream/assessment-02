@@ -30,8 +30,6 @@ class Employee {
     }
 }
 
-
-
 /*
     Create a new instance of your class.
     Save it to a variable called `empOne`.
