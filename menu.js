@@ -30,7 +30,14 @@
     'kids'
 */
 
-//CODE HERE
+const pizza = {
+    'name': 'Cheese Pizza',
+    'price': 2.99,
+    'category': 'entree',
+    'popularity': 4,
+    'rating': 3,
+    'tags': ["cheese","kids","cheap"]
+}
 
 
 
@@ -42,7 +49,7 @@
     Use dot notation to access the value.
 */
 
-//CODE HERE
+console.log(pizza.popularity)
 
 
 /*
@@ -52,7 +59,7 @@
     get the value.
 */
 
-//CODE HERE
+console.log(pizza.tags[1])
 
 
 /*
@@ -62,7 +69,9 @@
     Print the value of your new price variable.
 */
 
-//CODE HERE
+let {price} = pizza
+
+console.log(price)
 
 
 /*
@@ -72,7 +81,9 @@
     Print the value of your category variable. 
 */
 
-//CODE HERE
+let {category} = pizza;
+
+console.log(category)
 
 
 //////////////////PROBLEM 3////////////////////
@@ -87,7 +98,44 @@
     data in some functions that you'll write.
 */
 
-//CODE HERE
+foodArr = [
+    {
+        'name': 'Cheese Pizza',
+        'price': 2.99,
+        'category': 'entree',
+        'popularity': 3,
+        'rating': 3,
+        'tags': ["cheese","kids","cheap"]
+    },{
+        'name': 'Cinnamon Roll',
+        'price': 1.99,
+        'category': 'desert',
+        'popularity': 1,
+        'rating': 4.5,
+        'tags': ["sweet","kids"]
+    },{
+        'name': 'Salad',
+        'price': 4.99,
+        'category': 'entree',
+        'popularity': 5,
+        'rating': 4,
+        'tags': ["healthy","gluton-free","vegan"]
+    },{
+        'name': 'Soup',
+        'price': 2.50,
+        'category': 'side',
+        'popularity': 4,
+        'rating': 4.2,
+        'tags': ["cheese","healthy","gluton-free"]
+    },{
+        'name': 'Fries',
+        'price': 1.50,
+        'category': 'side',
+        'popularity': 2,
+        'rating': 3.8,
+        'tags': ["kids","cheap","vegan"]
+    }
+]
 
 
 
@@ -103,11 +151,14 @@
     your food objects has.
 */
 
-//CODE HERE
+//const kidsFilter = (tags, i) => foodArr[i].tags.includes("kids") ? true : false 
+//const filteredFood = foodArr.filter( (elem, i) => kidsFilter(elem.tags, i) === true)
 
-// const filteredFood = foodArr.filter(/* CALLBACK HERE */)
+const kidsFilter = tags => tags.includes("kids") ? true : false 
 
+const filteredFood = foodArr.filter(elem => kidsFilter(elem.tags) === true)
 
+console.log(filteredFood)
 
 //////////////////PROBLEM 5////////////////////
 /* 
@@ -148,7 +199,29 @@
     Return the filtered array from the entire function
 */
 
-//CODE HERE
+const aboveFilter = (propertyValue, number) => (propertyValue > number) ? true : false
+const belowFilter = (propertyValue, number) => (propertyValue < number) ? true : false
+
+const filterByProperty = (property, number, type) => {
+
+    let filteredArray = []
+    type = type.toLowerCase().trim()
+    property = property.toLowerCase().trim()
+
+    if(!(property in foodArr[0])){
+        return "Invalid property"
+    }
+
+    if (type === "above") {
+       filteredArray = foodArr.filter(elem => aboveFilter(elem[property], number))
+    } else if (type === "below") {
+        filteredArray = foodArr.filter(elem => belowFilter(elem[property], number))
+    } else {
+        return "Invalid type"
+    }
+
+    return filteredArray;
+}
 
 
 /*
@@ -158,4 +231,7 @@
     You'll have to console.log to see the filtered array
 */
 
-//CODE HERE
+//console.log(filterByProperty("popularity", 3, "below"))
+console.log(filterByProperty("price",3, "below"))
+//console.log(filterByProperty("price",2,"hello"))
+//console.log(filterByProperty("hello", 3, "above"))
